@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membrix App Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #05050A;
+            --card-bg: rgba(22, 24, 33, 0.65);
+            --accent: #5EEAD4;
+            --accent-glow: rgba(94, 234, 212, 0.5);
+            --text-main: #94A3B8;
+            --text-light: #F8FAFC;
+        }
+
+        body {
+            font-family: 'Inter', 'Padauk', sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(94, 234, 212, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.05), transparent 25%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .mobile-container {
+            max-width: 440px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-top: 30px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            color: var(--text-light);
+            font-size: 32px;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(248, 250, 252, 0.2);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 20px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, rgba(94, 234, 212, 0.2), transparent);
+        }
+
+        .step-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 24px;
+            margin-bottom: 24px;
+            margin-left: 30px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInUp 0.6s ease-out backwards;
+            text-align: center;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            left: -35px;
+            top: 28px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--accent-glow);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(94, 234, 212, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(94, 234, 212, 0.1);
+        }
+        
+        .step-card:hover::before {
+            transform: scale(1.5);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .step-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-light);
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .guide-image {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 12px;
+            margin: 0 auto;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .guide-image:hover {
+            transform: scale(1.03);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: var(--text-main); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="mobile-container">
+    <div class="header">
+        <h1>Membrix App Guide</h1>
+    </div>
+
+    <div class="timeline">
+        <div class="step-card" style="animation-delay: 0.02s;">
+            <div class="step-number">Login & Register</div>
+            <div class="step-text">App ကို သုံးဖို့အတွက် Login အရင်ဝင်ပေးပါ။ ကိုယ်ပိုင် username နဲ့ password ထည့်ပြီး <strong>'Login'</strong> ကို နှိပ်လိုက်ပါ။ ပိုမိုအဆင်ပြေစေရန်အတွက် လုံခြုံရေးအတွက် လက်ဗွေနဲ့လည်း ဝင်ရောက်နိုင်ပါသည်။</div>
+            <img src="1 - Login.jpg" class="guide-image" alt="Image 1">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.04s;">
+            <div class="step-number">Register</div>
+            <div class="step-text">အကောင့် မရှိသေးဘူးဆိုရင် <strong>'Register'</strong> နှိပ်ကာ ကိုယ့်အချက်အလက်လေးတွေ ဖြည့်ပြီး အကောင့်အသစ်လေး အလွယ်တကူ ဖွင့်နိုင်ပါသည်။</div>
+            <img src="2 - Register.jpg" class="guide-image" alt="Image 2">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.06s;">
+            <div class="step-number">Home</div>
+            <div class="step-text">ဒါကတော့ Membrix ရဲ့ <strong>Home</strong> စာမျက်နှာပါ။ ကိုယ့်ရဲ့ လက်ကျန်ပွိုင့်တွေ စစ်လို့ရသလို၊ အခြားနေရာတွေကို သွားချင်ရင်လည်း <strong>Icon</strong> လေးတွေကို နှိပ်ပြီး အလွယ်တကူ သွားလို့ရနိုင်ပါသည်။</div>
+            <img src="3 - Home.jpg" class="guide-image" alt="Image 3">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.08s;">
+            <div class="step-number">Notification</div>
+            <div class="step-text">အပေါ်ဘက်ထောင့်က <strong>ခေါင်းလောင်းလေး</strong> ကို နှိပ်လိုက်ရင် App ကနေ ပို့ပေးတဲ့ အသိပေးချက် <strong>(Notification)</strong> တွေကို ဖတ်လို့ရပါသည်။</div>
+            <img src="4 - Notification.jpg" class="guide-image" alt="Image 4">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.10s;">
+            <div class="step-number">Announcement</div>
+            <div class="step-text">Announcement တွင် <strong>ကြေညာချက်</strong> တွေကို ကြည့်ရှုနိုင်ပါသည်။</div>
+            <img src="5 - Announcement.jpg" class="guide-image" alt="Image 5">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.12s;">
+            <div class="step-number">Announcement Detail</div>
+            <div class="step-text">ကြေညာချက်တစ်ခုကို စိတ်ဝင်စားတယ်ဆိုပါက နှိပ်ပြီးအပြည့်အစုံနဲ့ ပုံလေးတွေကို <strong> ဖတ်လို့ရရှိနိုင်ပါသည်။</strong>။</div>
+            <img src="6 - Announcement Detail.jpg" class="guide-image" alt="Image 6">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.14s;">
+            <div class="step-number">Member Tiers</div>
+            <div class="step-text">ကိုယ့်ရဲ့ အဖွဲ့ဝင်အဆင့် (Tier) အလိုက် ဘာအခွင့်အရေးတွေ ရမလဲဆိုတာကို <strong>Benefits တွင်</strong> ကြည့်နိုင်မည်ဖြစ်သည်။</div>
+            <img src="7 - Member Tier Benefit.jpg" class="guide-image" alt="Image 7">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.16s;">
+            <div class="step-number">Member Tiers Rewards</div>
+            <div class="step-text">ကိုယ့်အဆင့်နဲ့ လဲလို့ရမယ့် ဆုလာဘ်တွေကို ကြည့်ချင်ရင် <strong>Rewards</strong> တွင် ကြည့်လို့ရနိုင်ပါသည်။</div>
+            <img src="8 - Member Tier Rewards.jpg" class="guide-image" alt="Image 8">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.18s;">
+            <div class="step-number">Redeem Pending List</div>
+            <div class="step-text">ဆုလာဘ်များ လဲလှယ်ပြီးသွားပါက အသုံးမပြုရသေးတ့် အခြေအနေကို Redeem List တွင် <strong>အလွယ်တကူ စစ်ဆေးနိုင်ပါသည်</strong>။</div>
+            <img src="9 - Redeem Pending List.jpg" class="guide-image" alt="Image 9">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.20s;">
+            <div class="step-number">Redeem History</div>
+            <div class="step-text">အရင်က လဲလှယ်ခဲ့ဖူးသော ဆုလာဘ်မှတ်တမ်း အားလုံးကို <strong>ပြန်လည်ကြည့်ရှုလို့ ရနိုင်ပါသည်</strong>။</div>
+            <img src="10 - Redeem History List.jpg" class="guide-image" alt="Image 10">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.22s;">
+            <div class="step-number">Redeem History Detail</div>
+            <div class="step-text">အသေးစိတ် သိရှိလိုပါက Detail အပေါ်ကို နှိပ်ပြီးတော့ ဘယ်အချိန်က လဲခဲ့လဲဆိုတာ <strong>အတိအကျ ကြည့်လို့ရနိုင်ပါသည်</strong>။</div>
+            <img src="11 - Redeem History Detail.jpg" class="guide-image" alt="Image 11">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.24s;">
+            <div class="step-number">Point History</div>
+            <div class="step-text">ကိုယ်ဘယ်ကနေ ပွိုင့်တွေရခဲ့လဲ ဆိုတဲ့ မှတ်တမ်းအကျဉ်းကို Points History တွင်<strong>အသေးစိတ် ကြည့်လို့ရနိုင်ပါသည်</strong>။</div>
+            <img src="12 - Point History.jpg" class="guide-image" alt="Image 12">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.26s;">
+            <div class="step-number">All Services</div>
+            <div class="step-text"><strong>'All Services'</strong> ကို နှိပ်ပြီးရင်တော့ App ထဲက ဝန်ဆောင်မှုတွေအကုန်လုံးကို ကိုယ်ကြိုက်ရာ ရွေးချယ် အသုံးပြုနိုင်ပါသည်။</div>
+            <img src="13 - All Services.jpg" class="guide-image" alt="Image 13">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.28s;">
+            <div class="step-number">Rewards</div>
+            <div class="step-text">ပွိုင့်တွေနဲ့ ဆုလာဘ်တွေ လဲလှယ်ချင်တယ်ဆိုရင်တော့ <strong>'Rewards' လေးကို နှိပ်ပြီး</strong> ရှာဖွေကြည့်လို့ရပါသည်။</div>
+            <img src="14 - Rewards.jpg" class="guide-image" alt="Image 14">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.30s;">
+            <div class="step-number">Rewards Detail</div>
+            <div class="step-text">လိုချင်တဲ့ ဆုလာဘ်ကို ရွေးပြီးသွားရင် အသေးစိတ်ကို ဖတ်ရှု့ကာ <strong>'Redeem Now'</strong> ကို နှိပ်ပြီး ကိုယ့်ရဲ့ ပွိုင့်တွေနဲ့ ချက်ချင်း လဲလှယ်နိုင်ပါသည်။</div>
+            <img src="15 - Rewards Detail.jpg" class="guide-image" alt="Image 15">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.32s;">
+            <div class="step-number">Rewards Success</div>
+            <div class="step-text">ဆုလာဘ်လဲလှယ်ပြီးတာနဲ့ Success Page ပေါ်လာပါလိမ့်မည်။ အောင်မြင်သွားပြီမို့ <strong>'Done'</strong> ကို နှိပ်ပြီး Home ကို ပြန်သွားလို့ရပါသည်။</div>
+            <img src="16 - Rewards Success.jpg" class="guide-image" alt="Image 16">
+        </div>
+		
+		<div class="step-card" style="animation-delay: 0.36s;">
+            <div class="step-number">Points History</div>
+            <div class="step-text">ပွိုင့်တွေ ဘယ်လိုတက်လာလဲ၊ ဘယ်လိုသုံးလိုက်လဲ ဆိုတာကို အသေးစိတ် ပြန်ကြည့်ရန် <strong> Points History တွင်ကြည့်ရှု့နိုင်ပါသည်</strong>။</div>
+            <img src="12 - Point History.jpg" class="guide-image" alt="Image 12">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.34s;">
+            <div class="step-number">Earn Points</div>
+            <div class="step-text">System မှ ပုံသေပေးသော ပွိုင့်များကို <strong>'Earn Points'</strong> တွင်ကြည့်ရှု့နိုင်ပါသည်။</div>
+            <img src="17 - Earn Points.jpg" class="guide-image" alt="Image 17">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.36s;">
+            <div class="step-number">Invoice History</div>
+            <div class="step-text">မိမိရရှိသည့် ပွိုင့်များကို ဘောင်ချာအလိုက်<strong> Invoice History တွင်ကြည့်ရှု့နိုင်ပါသည်</strong>။</div>
+            <img src="18 - Points History.jpg" class="guide-image" alt="Image 18">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.38s;">
+            <div class="step-number">Invoice History Detail</div>
+            <div class="step-text">အရောင်းအဝယ်မှတ်တမ်း <strong>တစ်ခုချင်းစီကို ထောက်ကြည့်ပြီး</strong> ကိုယ့်ရဲ့ ပွိုင့်အပြောင်းအလဲတွေကို အတိအကျ စစ်ဆေးကြည့်နိုင်ပါသည်။</div>
+            <img src="19 - Points History Detail.jpg" class="guide-image" alt="Image 19">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.40s;">
+            <div class="step-number">News List</div>
+            <div class="step-text">နောက်ဆုံးရ သတင်းလေးတွေ ဖတ်ချင်တယ် ဆိုရင်တော့ သတင်းစာမျက်နှာကို သွားပြီး <strong>ဖတ်ရှု့နိုင်ပါသည်</strong>။</div>
+            <img src="20 - News List.jpg" class="guide-image" alt="Image 20">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.42s;">
+            <div class="step-number">News Detail</div>
+            <div class="step-text"><strong>ခေါင်းစဉ်တစ်ခုချင်းစီကို နှိပ်ပြီး</strong> သတင်းအပြည့်အစုံကို ဖတ်ရှု့နိုင်ပါသည်။</div>
+            <img src="21 - News Detail.jpg" class="guide-image" alt="Image 21">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.44s;">
+            <div class="step-number">Branch List</div>
+            <div class="step-text">ရုံးခွဲ ဒါမှမဟုတ် ဆိုင်ခွဲတွေကို ရှာချင်တယ်ဆိုရင် <strong>'Branch List'</strong> ကနေတဆင့် ကိုယ်နဲ့အနီးဆုံး နေရာတွေကို ရှာကြည့်နိုင်ပါသည်။</div>
+            <img src="22 - Branch List.jpg" class="guide-image" alt="Image 22">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.46s;">
+            <div class="step-number">Branch Detail</div>
+            <div class="step-text">ဆိုင်ခွဲတစ်ခုချင်းစီရဲ့ အသေးစိတ်အချက်အလက်တွေကို<strong>လမ်းညွှန် မြေပုံတွေကို</strong> ကြည့်ရှု့လို့ရပါသည်။</div>
+            <img src="23 - Branch Detail.jpg" class="guide-image" alt="Image 23">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.48s;">
+            <div class="step-number">Menu</div>
+            <div class="step-text">ကိုယ့်အကောင့်ကို ပြင်ချင်တာပဲဖြစ်ဖြစ်၊ App ကို အပြင်အဆင် ပြောင်းချင်ရင်ပဲဖြစ်ဖြစ် ညာဘက်အောက်ထောင့်က <strong>'Account' Icon လေးကို</strong> နှိပ်ပြီး ဝင်ပြင်လို့ရပါသည်။</div>
+            <img src="24 - Menu.jpg" class="guide-image" alt="Image 24">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.50s;">
+            <div class="step-number">Edit Profile</div>
+            <div class="step-text">ကိုယ့်ရဲ့ အချက်အလက်တွေကို နောက်ဆုံးအခြေအနေနဲ့ အပ်ဒိတ် (Update) လုပ်ထားဖို့ <strong>'Edit Profile'</strong> ကနေ ပြင်လို့ရပါသည်။</div>
+            <img src="25 - Edit Profile.jpg" class="guide-image" alt="Image 25">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.52s;">
+            <div class="step-number">Security And Privacy</div>
+            <div class="step-text">အကောင့်ကို လုံခြုံရေးတိုးမြှင့်ချင်ရင် Privacy မျက်နှာပြင်ကနေ တဆင့် <strong>ဖုန်းနံပါတ်ပြောင်းလဲခြင်း ၊ လျှို့ဝှက်နံပါတ်ပြောင်းလဲခြင်း၊ လက်ဗွေစနစ်တွေကို ဖွင့်/ပိတ်</strong> ပြုလုပ်နိုင်ပါသည်။</div>
+            <img src="26  - Security And Privacy.jpg" class="guide-image" alt="Image 26">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.54s;">
+            <div class="step-number">Change Language</div>
+            <div class="step-text">ဘာသာစကား ပြောင်းလဲချင်ပါက <strong>'Change Language'</strong> ကို သွားပြီး ကိုယ်အဆင်ပြေမယ့် ဘာသာစကားကို ရွေးချယ်နိုင်ပါသည်။</div>
+            <img src="27 - Change Language.jpg" class="guide-image" alt="Image 27">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.56s;">
+            <div class="step-number">About Us</div>
+            <div class="step-text">ကျွန်ုပ်တို့ကုမ္ပဏီရဲ့ အချက်အလက်တွေနဲ့ နောက်ခံသမိုင်းကြောင်းတွေကို သိချင်ရင် <strong>'About Us'</strong> ကနေ ဖတ်ရှု့နိုင်ပါသည်။</div>
+            <img src="28 - About Us.jpg" class="guide-image" alt="Image 28">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.58s;">
+            <div class="step-number">Terms And Conditions</div>
+            <div class="step-text">App ရဲ့ သတ်မှတ်ထားတဲ့ စည်းကမ်းချက်တွေကို <strong>အသေးစိတ် ဖတ်ရှုနိုင်ပါသည်</strong>။</div>
+            <img src="29 - Terms And Conditions.jpg" class="guide-image" alt="Image 29">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.60s;">
+            <div class="step-number">Invite Friends</div>
+            <div class="step-text">အခြားသူငယ်ချင်းတွေကိုပါ App သုံးစေချင်ပါက <strong>'Invite Friends'</strong> ရှိ ကိုယ့်ရဲ့ ဖိတ်ခေါ်လင့် (Link) လေးကို ဝေမျှနိုင်ပါသည်။</div>
+            <img src="30 - Invite Friends.jpg" class="guide-image" alt="Image 30">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.62s;">
+            <div class="step-number">Contact Us</div>
+            <div class="step-text">သိချင်တာ ဒါမှမဟုတ် အကူအညီ လိုအပ်တာတွေ ရှိရင် <strong>'Contact Us'</strong> ကနေတဆင့် ကျွန်ုပ်တို့ရဲ့ အကူအညီပေးရေးအဖွဲ့ကို တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်။</div>
+            <img src="31 - Contact Us.jpg" class="guide-image" alt="Image 31">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.64s;">
+            <div class="step-number">Feedback</div>
+            <div class="step-text">App ပိုကောင်းလာဖို့ ကိုယ့်ရဲ့ အကြံပြုချက်လေးတွေကို ပေးချင်ရင် <strong>'Feedback'</strong> နေရာမှာ စာရေးပြီး ပေးပို့နိုင်ပါသည်။</div>
+            <img src="32 - Feedback.jpg" class="guide-image" alt="Image 32">
+        </div>
+
+        <div class="step-card" style="animation-delay: 0.66s;">
+            <div class="step-number">FAQ</div>
+            <div class="step-text">အမေးများတဲ့ မေးခွန်းနဲ့ အဖြေလေးတွေကို ကြည့်ချင်တယ်ဆိုရင် <strong>'FAQ'</strong> ထဲ ဝင်ပြီး အလွယ်တကူ အဖြေရှာကြည့်လို့ရပါသည်။</div>
+            <img src="33 - FAQ.jpg" class="guide-image" alt="Image 33">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
